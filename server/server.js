@@ -17,10 +17,10 @@ const peerServer = ExpressPeerServer(server, {
   debug: true,
 });
 app.use(cors());
-app.use("*", express.static(path.join(__dirname, "../build")));
-// app.get("*", (req, res) => {
-//   express.static("../build");
-// });
+// app.use("*", express.static(path.join(__dirname, "../build")));
+app.get("*", (req, res) => {
+  res.send("working");
+});
 app.use("/peer", peerServer);
 const users = {};
 io.on("connection", (socket) => {

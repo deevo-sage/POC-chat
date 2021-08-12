@@ -5,6 +5,7 @@ const server = http.createServer(app);
 const socket = require("socket.io");
 const { ExpressPeerServer } = require("peer");
 const cors = require("cors");
+const path = require("path");
 const io = socket(server, {
   cors: {
     origin: "http://localhost:1234",
@@ -16,9 +17,10 @@ const peerServer = ExpressPeerServer(server, {
   debug: true,
 });
 app.use(cors());
-app.get("/", (req, res) => {
-  res.send("working");
-});
+app.use("*", express.static(path.join(__dirname, "../build")));
+// app.get("*", (req, res) => {
+//   express.static("../build");
+// });
 app.use("/peer", peerServer);
 const users = {};
 io.on("connection", (socket) => {

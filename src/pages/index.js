@@ -27,7 +27,7 @@ const IndexPage = () => {
   const peer = useRef(null);
   const nav = useNavigate();
   useEffect(() => {
-    socket.current = io.connect("http://192.168.0.55:8000/");
+    socket.current = io.connect("http://139.59.86.20:8000/");
     socket.current.on("user-disconnected", () => {
       console.log("disconnected");
       setisFriend(true);
@@ -64,7 +64,7 @@ const IndexPage = () => {
   };
   const peersetup = (stream) => {
     peer.current = new Peer({
-      host: "192.168.0.55",
+      host: "139.59.86.20",
       port: "8000",
       path: "peer",
     });

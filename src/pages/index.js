@@ -67,8 +67,10 @@ const IndexPage = () => {
   };
   const peersetup = (stream) => {
     peer.current = new Peer({
+      secure: true,
       host: config.server,
-      port: "8000",
+      port: 443,
+
       path: "/peerjs",
     });
     peer.current.on("open", (id) => {

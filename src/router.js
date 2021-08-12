@@ -7,7 +7,7 @@ const Routes = () => {
   return (
     <Router>
       <LoginPage path="/" />
-      <IndexPage path="/meet/:id" />
+      <IndexPage path="/meet" />
     </Router>
   );
 };

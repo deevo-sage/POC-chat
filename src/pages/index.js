@@ -28,7 +28,9 @@ const IndexPage = () => {
   const peer = useRef(null);
   const nav = useNavigate();
   useEffect(() => {
+    console.log(user, config);
     socket.current = io.connect(config.serverURL);
+
     socket.current.on("user-disconnected", () => {
       console.log("disconnected");
       setisFriend(true);
@@ -67,10 +69,11 @@ const IndexPage = () => {
     peer.current = new Peer({
       host: config.server,
       port: "8000",
-      path: "peer",
+      path: "/peerjs",
     });
     peer.current.on("open", (id) => {
       console.log(id, "open");
+      console.log(user.roomid);
       socket.current.emit("join-room", user.roomid, id);
     });
     peer.current.on("call", (call) => {

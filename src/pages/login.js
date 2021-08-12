@@ -43,7 +43,7 @@ function LoginPage(props) {
         colorScheme="linkedin"
         onClick={() => {
           setUser({ username, roomid });
-          nav("/meet/" + roomid);
+          nav("/meet/");
         }}
       >
         Join

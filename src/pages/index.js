@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import Peer from "peerjs";
 import { navigate, useNavigate } from "@reach/router";
+import { config } from "../config";
 
 const IndexPage = () => {
   const [calling, setcalling] = useState();
@@ -27,7 +28,7 @@ const IndexPage = () => {
   const peer = useRef(null);
   const nav = useNavigate();
   useEffect(() => {
-    socket.current = io.connect("http://139.59.86.20:8000/");
+    socket.current = io.connect(config.serverURL);
     socket.current.on("user-disconnected", () => {
       console.log("disconnected");
       setisFriend(true);
@@ -64,7 +65,7 @@ const IndexPage = () => {
   };
   const peersetup = (stream) => {
     peer.current = new Peer({
-      host: "139.59.86.20",
+      host: config.server,
       port: "8000",
       path: "peer",
     });

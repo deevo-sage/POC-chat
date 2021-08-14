@@ -68,10 +68,19 @@ const IndexPage = () => {
   const peersetup = (stream) => {
     peer.current = new Peer({
       secure: true,
-      host: config.server,
-      port: 443,
-
-      path: "/peerjs",
+      trickle: false,
+      config: {
+        iceServers: [
+          {
+            url: "stun:139.59.86.20:7000",
+          },
+          {
+            url: "turn:139.59.86.20:7000",
+            credential: "key1",
+            username: "username1",
+          },
+        ],
+      },
     });
     peer.current.on("open", (id) => {
       console.log(id, "open");
